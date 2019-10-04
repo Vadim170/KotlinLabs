@@ -1,4 +1,4 @@
-package ru.tinkoff.lab4_6
+package ru.tinkoff.lab4_7
 
 interface Flyable {
     fun fly()
