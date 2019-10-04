@@ -20,7 +20,15 @@ interface Voiceable {
     fun voice()
 }
 
-abstract class Pet(val name: String, val age: Int)
+abstract class Pet(val name: String, val age: Int) {
+    fun eat() {
+        println("Ням-ням")
+    }
+
+    fun shit() {
+        println("Пук-пук")
+    }
+}
 
 class Dog(name: String,age: Int) : Pet(name,age), Voiceable, Walkable {
     override fun voice() {
