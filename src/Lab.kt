@@ -1,19 +1,30 @@
-package ru.tinkoff.lab4_5
 import java.util.Scanner
 
-class Car() {
-    fun ride(km: Int) {
-        println("Поехали!")
-        var kmLeft = km
-        while(kmLeft > 0) {
-            println("Осталось $kmLeft километров")
-            --kmLeft
-        }
-        println("Приехали!")
+val scan = Scanner(System.`in`)
+
+fun makeCatVoice(e: Cat){
+    e.voice()
+}
+open class Cat {
+    open fun voice() {
+        println("Meow meow meow!!!")
     }
 }
-val scan = Scanner(System.`in`)
+class HomeCat(val name: String) : Cat() {
+    override fun voice() {
+        println("Meoooooow! Feed me, $name!")
+    }
+}
 fun main(args: Array<String>) {
-    val car = Car()
-    car.ride(scan.nextInt())
+    val usualCat = Cat()        // Создаем обычного кота
+
+    val name = scan.next()      // Считываем имя
+    val homeCat = HomeCat(name) // Передаём в конструктор
+
+    val num = scan.nextInt()
+
+    repeat(num) {
+        makeCatVoice(usualCat)
+        makeCatVoice(homeCat)
+    }
 }
