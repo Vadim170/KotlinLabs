@@ -1,17 +1,19 @@
 package ru.tinkoff.lab4_5
+import java.util.Scanner
 
-abstract class Pet(val name: String, val age: Int)
-
-class Dog(name: String,age: Int) : Pet(name,age)
-class Cat(name: String,age: Int) : Pet(name,age)
-class Parrot(name: String,age: Int) : Pet(name,age)
-class Snake(name: String,age: Int) : Pet(name,age)
-class Fish(name: String,age: Int) : Pet(name,age)
-
-fun main(args: Array<String>){
-    val dog = Dog("Bobik", 3)
-    val cat = Cat("Mussy", 4)
-    val parrot = Parrot("Mike", 5)
-    val snake = Snake("Smith", 3)
-    val fish = Fish("Nstya", 2)
+class Car() {
+    fun ride(km: Int) {
+        println("Поехали!")
+        var kmLeft = km
+        while(kmLeft > 0) {
+            println("Осталось $kmLeft километров")
+            --kmLeft
+        }
+        println("Приехали!")
+    }
+}
+val scan = Scanner(System.`in`)
+fun main(args: Array<String>) {
+    val car = Car()
+    car.ride(scan.nextInt())
 }
