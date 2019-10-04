@@ -1,30 +1,20 @@
-import java.util.Scanner
+package ru.tinkoff.lab4_11
+import java.util.*
 
-val scan = Scanner(System.`in`)
-
-fun makeCatVoice(e: Cat){
-    e.voice()
-}
 open class Cat {
-    open fun voice() {
-        println("Meow meow meow!!!")
+    open fun hunt () {
+        println("Я охочусь на мышей, ведь я кот!")
     }
 }
-class HomeCat(val name: String) : Cat() {
-    override fun voice() {
-        println("Meoooooow! Feed me, $name!")
+class HomeCat : Cat() {
+    fun hunt(choice: Boolean) {
+        if(choice) super.hunt()
+        else println("Ты че сдурел? Какие мыши? Иди корми меня, ленивая задница")
     }
 }
-fun main(args: Array<String>) {
-    val usualCat = Cat()        // Создаем обычного кота
-
-    val name = scan.next()      // Считываем имя
-    val homeCat = HomeCat(name) // Передаём в конструктор
-
-    val num = scan.nextInt()
-
-    repeat(num) {
-        makeCatVoice(usualCat)
-        makeCatVoice(homeCat)
-    }
+fun main() {
+    val scanner = Scanner(System.`in`)
+    val homeCat = HomeCat()
+    val choice = scanner.nextBoolean()
+    homeCat.hunt(choice)
 }
