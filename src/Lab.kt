@@ -1,3 +1,4 @@
+package ru.tinkoff.lab4_10
 import java.util.Scanner
 
 val scan = Scanner(System.`in`)
