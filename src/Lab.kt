@@ -1,4 +1,4 @@
-package ru.tinkoff.lab4_5
+package ru.tinkoff.lab4_9
 import java.util.Scanner
 
 class Car() {
