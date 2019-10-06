@@ -8,22 +8,22 @@ internal class PetGameTest {
 
     @Test
     fun start() {
-        // Собака "Max" кормим 3 раза - сбегает
+        // РЎРѕР±Р°РєР° "Max" РєРѕСЂРјРёРј 3 СЂР°Р·Р° - СЃР±РµРіР°РµС‚
         var inStream = ByteArrayInputStream("1\nMax\n1\n1\n1".encodeToByteArray())
         System.setIn(inStream)
         Assert.assertNotNull(PetGame().start())
 
-        // Кот "Lin don" кормим, убирает, кормим 3 раза раза - сбегает
+        // РљРѕС‚ "Lin don" РєРѕСЂРјРёРј, СѓР±РёСЂР°РµС‚, РєРѕСЂРјРёРј 3 СЂР°Р·Р° СЂР°Р·Р° - СЃР±РµРіР°РµС‚
         inStream = ByteArrayInputStream("2\nLin don\n1\n2\n1\n1\n1".encodeToByteArray())
         System.setIn(inStream)
         Assert.assertNotNull(PetGame().start())
 
-        // Несуществующее животное
+        // РќРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ Р¶РёРІРѕС‚РЅРѕРµ
         inStream = ByteArrayInputStream("6\n5\nLex\n1\n1\n1".encodeToByteArray())
         System.setIn(inStream)
         Assert.assertNotNull(PetGame().start())
 
-        // Несуществующее животное
+        // РќРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ Р¶РёРІРѕС‚РЅРѕРµ
         inStream = ByteArrayInputStream("0\n1\nLex\n1\n1\n1".encodeToByteArray())
         System.setIn(inStream)
         Assert.assertNotNull(PetGame().start())

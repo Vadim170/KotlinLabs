@@ -24,7 +24,7 @@ class PetGame() {
             3 -> Parrot(petName, petAge)
             4 -> Snake(petName, petAge)
             5 -> Fish(petName, petAge)
-            else -> throw Exception("Указан неверный тип животного")
+            else -> throw Exception("РЈРєР°Р·Р°РЅ РЅРµРІРµСЂРЅС‹Р№ С‚РёРї Р¶РёРІРѕС‚РЅРѕРіРѕ")
         }
     }
 
@@ -40,29 +40,29 @@ class PetGame() {
                 pet.eat()
                 pet.shit()
                 ++bunchShit
-                if(bunchShit > 2) pet.isAvailable = false // Животное сбегает
+                if(bunchShit > 2) pet.isAvailable = false // Р–РёРІРѕС‚РЅРѕРµ СЃР±РµРіР°РµС‚
                 petGameUI.onEatSuccess()
             }
             2 -> {
                 bunchShit = 0
                 petGameUI.onClearSuccess()
             }
-            else -> throw Exception("Указано неизвестное действие")
+            else -> throw Exception("РЈРєР°Р·Р°РЅРѕ РЅРµРёР·РІРµСЃС‚РЅРѕРµ РґРµР№СЃС‚РІРёРµ")
         }
         petGameUI.onActionSuccess()
     }
 
-    // Реализация интерфейса пользователя
+    // Р РµР°Р»РёР·Р°С†РёСЏ РёРЅС‚РµСЂС„РµР№СЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     val petGameUI = object : PetGameUI {
         var scanner = Scanner(System.`in`)
 
         override fun selectPetType(): Int {
-            println("Выберите питомца:")
-            println("(1-Собака; 2-Кошка; 3-Попугай; 4-Змея; 5-Рыбка)")
+            println("Р’С‹Р±РµСЂРёС‚Рµ РїРёС‚РѕРјС†Р°:")
+            println("(1-РЎРѕР±Р°РєР°; 2-РљРѕС€РєР°; 3-РџРѕРїСѓРіР°Р№; 4-Р—РјРµСЏ; 5-Р С‹Р±РєР°)")
             var petType = scanner.nextInt()
             while (petType !in 1..5) {
-                println("Не, таких животных у нас нет(пока)")
-                println("Выберите питомца:")
+                println("РќРµ, С‚Р°РєРёС… Р¶РёРІРѕС‚РЅС‹С… Сѓ РЅР°СЃ РЅРµС‚(РїРѕРєР°)")
+                println("Р’С‹Р±РµСЂРёС‚Рµ РїРёС‚РѕРјС†Р°:")
                 petType = scanner.nextInt()
             }
             return petType
@@ -70,40 +70,40 @@ class PetGame() {
 
         override fun selectPetName(): String {
             scanner.nextLine()
-            println("Введите имя вашего питомца:")
+            println("Р’РІРµРґРёС‚Рµ РёРјСЏ РІР°С€РµРіРѕ РїРёС‚РѕРјС†Р°:")
             return scanner.nextLine()
         }
 
         override fun selectAction() : Int {
-            println("Что хотите сделать с вашим питомцем?")
-            println("(1-Покормить; 2-Убрать за ним)")
+            println("Р§С‚Рѕ С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ СЃ РІР°С€РёРј РїРёС‚РѕРјС†РµРј?")
+            println("(1-РџРѕРєРѕСЂРјРёС‚СЊ; 2-РЈР±СЂР°С‚СЊ Р·Р° РЅРёРј)")
             var action = scanner.nextInt()
             while (action !in 1..2) {
-                println("Такое действие недоступно, повтори выбор:")
+                println("РўР°РєРѕРµ РґРµР№СЃС‚РІРёРµ РЅРµРґРѕСЃС‚СѓРїРЅРѕ, РїРѕРІС‚РѕСЂРё РІС‹Р±РѕСЂ:")
                 action = scanner.nextInt()
             }
             return action
         }
 
         override fun onEatSuccess() {
-            println("${pet.name} покушал и облегчился")
+            println("${pet.name} РїРѕРєСѓС€Р°Р» Рё РѕР±Р»РµРіС‡РёР»СЃСЏ")
         }
 
         override fun onActionSuccess() {
             println(
                 when (bunchShit) {
-                    0 -> "Дома чисто и хорошо"
-                    1 -> "${pet.name} слегда нагадил, стоит прибраться"
-                    2 -> "Как можно жить, когда так грязно? Уберитесь!"
-                    3 -> "${pet.name} не может жить с таким безолаберным хозяином"
-                    else -> throw Exception("Ошибка в bunch of shit")
+                    0 -> "Р”РѕРјР° С‡РёСЃС‚Рѕ Рё С…РѕСЂРѕС€Рѕ"
+                    1 -> "${pet.name} СЃР»РµРіРґР° РЅР°РіР°РґРёР», СЃС‚РѕРёС‚ РїСЂРёР±СЂР°С‚СЊСЃСЏ"
+                    2 -> "РљР°Рє РјРѕР¶РЅРѕ Р¶РёС‚СЊ, РєРѕРіРґР° С‚Р°Рє РіСЂСЏР·РЅРѕ? РЈР±РµСЂРёС‚РµСЃСЊ!"
+                    3 -> "${pet.name} РЅРµ РјРѕР¶РµС‚ Р¶РёС‚СЊ СЃ С‚Р°РєРёРј Р±РµР·РѕР»Р°Р±РµСЂРЅС‹Рј С…РѕР·СЏРёРЅРѕРј"
+                    else -> throw Exception("РћС€РёР±РєР° РІ bunch of shit")
                 }
             )
         }
 
         override fun onClearSuccess() {
-            println("Вы убрасиль за ${pet.name}")
-            println("${pet.name} уже ${pet.age} дней. Ему надо хорошо питаться")
+            println("Р’С‹ СѓР±СЂР°СЃРёР»СЊ Р·Р° ${pet.name}")
+            println("${pet.name} СѓР¶Рµ ${pet.age} РґРЅРµР№. Р•РјСѓ РЅР°РґРѕ С…РѕСЂРѕС€Рѕ РїРёС‚Р°С‚СЊСЃСЏ")
         }
     }
 
