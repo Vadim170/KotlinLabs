@@ -1,20 +1,22 @@
-package ru.tinkoff.lab4_11
-import java.util.*
+package ru.tinkoff.lab5_6
 
-open class Cat {
-    open fun hunt () {
-        println("Я охочусь на мышей, ведь я кот!")
-    }
-}
-class HomeCat : Cat() {
-    fun hunt(choice: Boolean) {
-        if(choice) super.hunt()
-        else println("Ты че сдурел? Какие мыши? Иди корми меня, ленивая задница")
-    }
-}
+data class Person(
+    val lastName: String,
+    val firstName: String,
+    val age: Int,
+    val mailId: Int,
+    val phoneNumber: String
+)
+
+fun stringComparePersons(person1: Person, person2: Person)
+        = "${person1.firstName} ${if(person1 == person2) "идентичен" else "неидентичен"} ${person2.firstName}"
+
 fun main() {
-    val scanner = Scanner(System.`in`)
-    val homeCat = HomeCat()
-    val choice = scanner.nextBoolean()
-    homeCat.hunt(choice)
+    val person1 = Person("Иванов", "Семён", 17, 330045, "+79209826345")
+    val person2 = Person("Алёхин", "Виктор", 23, 330045, "+79219821315")
+    val person3 = Person("Иванов", "Семён", 17, 330045, "+79209826345")
+
+    println(stringComparePersons(person1,person2))
+    println(stringComparePersons(person1,person3))
+    println(stringComparePersons(person2,person3))
 }
