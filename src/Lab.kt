@@ -1,53 +1,43 @@
-package ru.tinkoff.lab5_7
+package ru.tinkoff.lab6_8
 
-data class Person (
-    val lastName: String,
-    val firstName: String,
-    val age: Int,
-    val mailId: Int,
-    val phoneNumber: String) {
-    companion object : Comparator<Person>{
-        override fun compare(o1: Person?, o2: Person?): Int {
-            if(o1 == null || o2 == null) return 0
-            return if(o1.lastName == o2.lastName &&
-                o1.firstName == o2.firstName &&
-                o1.age == o2.age &&
-                o1.mailId == o2.mailId &&
-                o1.phoneNumber == o2.phoneNumber)
-                1
-            else
-                0
-        }
-    }
+enum class Sex {
+    MALE, FEMALE
 }
 
-object PersonsComparator : Comparator<Person> {
-    override fun compare(o1: Person?, o2: Person?): Int {
-        if(o1 == null || o2 == null) return 0
-        return if(o1.lastName == o2.lastName &&
-            o1.firstName == o2.firstName &&
-            o1.age == o2.age &&
-            o1.mailId == o2.mailId &&
-            o1.phoneNumber == o2.phoneNumber)
-            1
-        else
-            0
+class Pet {
+    var nickname : String = ""
+    var age : Int = 0
+    var sex : Sex? = null
+
+    override fun toString(): String {
+        return "$nickname $age $sex"
     }
 }
-
-fun stringComparePersons(person1: Person, person2: Person, comparator: Comparator<Person>)
-        = "${person1.firstName} ${if(comparator.compare(person1, person2) == 1) "идентичен" else "неидентичен"} ${person2.firstName}"
 
 fun main() {
-    val person1 = Person("Иванов", "Семён", 17, 330045, "+79209826345")
-    val person2 = Person("Алёхин", "Виктор", 23, 330045, "+79219821315")
-    val person3 = Person("Иванов", "Семён", 17, 330045, "+79209826345")
-    println("Compare by PersonsComparator object:")
-    println(stringComparePersons(person1,person2, PersonsComparator))
-    println(stringComparePersons(person1,person3, PersonsComparator))
-    println(stringComparePersons(person2,person3, PersonsComparator))
-    println("Compare by companion object:")
-    println(stringComparePersons(person1,person2, Person))
-    println(stringComparePersons(person1,person3, Person))
-    println(stringComparePersons(person2,person3, Person))
+    val pet = Pet()
+    pet.apply { // Возвращает объект переданный в аргументе. Это не нужно, поэтому with в той же степени подходит
+        nickname = "Tor"
+        age = 12
+        sex = Sex.MALE
+    }
+    println(pet)
+    with(pet) { // Возвращает результат последнего лямбда-выражения. Это не нужно, поэтому apply в той же степени подходит
+        nickname = "Mary"
+        age = 21
+        sex = Sex.FEMALE
+    }
+    println(pet)
+    pet.also { // "it." это лишние символы, которые можно не писать.
+        it.nickname = "Victor"
+        it.age = 1
+        it.sex = null
+    }
+    println(pet)
+    pet.let { // "it." это лишние символы, которые можно не писать. И let применяют для null опасных типов, здесь это не требуется.
+        it.nickname = "Kistocka"
+        it.age = 2
+        it.sex = null
+    }
+    println(pet)
 }
