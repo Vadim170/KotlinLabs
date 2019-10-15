@@ -8,11 +8,20 @@ fun main(args: Array<String>) {
         sex = Sex.FEMALE
     }
     println(pet)
-    println(if pet.isAddult() "Совершеннолетняя" else "Несовершеннолетняя")
+    println(if(pet.isAddult()) "Совершеннолетняя" else "Несовершеннолетняя")
     println(pet.respectableNickname)
 
     val dog = Dog()
-    dog.respectableNickname
+    dog.nickname = "Bobik"
+    println(dog.respectableNickname)
+
+    val dog2 : Pet = Dog()
+    dog2.nickname = "Bobik"
+    println(dog2.respectableNickname)
+
+    // У dog2 вызовется свойство расширения от Pet
+    // и напишет просто "Dear name", а не "Dear dog name"
+    // Это может вызывать путанницу
 }
 
 enum class Sex {
@@ -29,12 +38,15 @@ open class Pet {
     }
 }
 
-class Dog : Pet {
-
-}
+class Dog : Pet()
 
 fun Pet.isAddult() = (age >= 2)
 
-var Pet.respectableNickname
+var Pet.respectableNickname: String
     get() = "Dear $nickname"
+    set(value) {}
+
+var Dog.respectableNickname: String
+    get() = "Dear dog $nickname"
+    set(value) {}
 
