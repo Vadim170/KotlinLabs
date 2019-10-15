@@ -1,4 +1,4 @@
-package ru.tinkoff.lab7_3
+package ru.tinkoff.lab7_4
 
 fun main(args: Array<String>) {
     val pet = Pet()
@@ -10,13 +10,16 @@ fun main(args: Array<String>) {
     println(pet)
     println(if pet.isAddult() "Совершеннолетняя" else "Несовершеннолетняя")
     println(pet.respectableNickname)
+
+    val dog = Dog()
+    dog.respectableNickname
 }
 
 enum class Sex {
     MALE, FEMALE
 }
 
-class Pet {
+open class Pet {
     var nickname : String = ""
     var age : Int = 0
     var sex : Sex? = null
@@ -24,6 +27,10 @@ class Pet {
     override fun toString(): String {
         return "$nickname $age $sex"
     }
+}
+
+class Dog : Pet {
+
 }
 
 fun Pet.isAddult() = (age >= 2)
