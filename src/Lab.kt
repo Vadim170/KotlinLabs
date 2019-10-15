@@ -1,4 +1,4 @@
-package ru.tinkoff.lab7_4
+package ru.tinkoff.lab7_5
 
 fun main(args: Array<String>) {
     val pet = Pet()
@@ -29,12 +29,16 @@ open class Pet {
     }
 }
 
-class Dog : Pet {
+class Dog : Pet
 
-}
+class Cat : Pet
 
 fun Pet.isAddult() = (age >= 2)
 
 var Pet.respectableNickname
     get() = "Dear $nickname"
+
+class <Pet> Owner(val pet: <Pet>) {
+    fun feed() = println("Домашнее животное ${pet.nickname} накормлено")
+}
 
