@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
         sex = Sex.FEMALE
     }
     println(pet)
-    println(if pet.isAddult() "Совершеннолетняя" else "Несовершеннолетняя")
+    println(if(pet.isAddult()) "Совершеннолетняя" else "Несовершеннолетняя")
     println(pet.respectableNickname)
 }
 
@@ -28,6 +28,7 @@ class Pet {
 
 fun Pet.isAddult() = (age >= 2)
 
-var Pet.respectableNickname
+var Pet.respectableNickname: String
     get() = "Dear $nickname"
+    set(value) {}
 
